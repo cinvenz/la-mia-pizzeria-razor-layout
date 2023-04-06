@@ -1,8 +1,101 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    Layout = null;
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@{
+    string name = "Vincenzo";
+    string surname = "Bortune";
+
+    ///////////////////////////
+    
+    int Somma(int n)
+    {
+        int sum = 0;
+        for (int i = 1; i <= n; i++) sum += i;
+        return sum;
+    }
+    ///////////////////////////
+    
+    int SommaLettera(char c, string str)
+    {
+        char[] characters = str.ToCharArray();
+        int sum = 0;
+        foreach (var character in characters)
+        {
+            if (character == c) sum++;
+        }
+        return sum;
+    }
+
+    ///////////////////////////
+
+    List<int> RandomList()
+    {
+        var numRandom = new Random();
+        List<int> listaNum = new List<int>();
+        for (int i = 0; i < 20; i++)
+        {
+            listaNum.Add(numRandom.Next(1, 91));
+        }
+        return listaNum;
+    }
+
+    List<int> listaNum = RandomList();
+ }
+}
+
+
+
+<div>
+    @*Esercizio 1*@
+    <h2>@name @surname</h2>
+    <hr />
+
+    @*Esercizio 2*@
+    <span>@Somma(15)</span>
+    <hr />
+
+    @*Esercizio 3*@
+    <div>Nella frase: "nel mezzo del cammin di nostra vita" la lettera a è presente @SommaLettera('a', "nel mezzo del cammin di nostra vita") volte.</div>
+    <hr />
+
+    @*Esercizio 4*@
+    <div">
+        @{
+            for (int i = 0; i < listaNum.Count(); i++)
+            {
+                if (listaNum.ElementAt(i) >= 20 && listaNum.ElementAt(i) <= 70)
+                {
+                    if (i != listaNum.Count() - 1)
+                    {
+                        <text>@listaNum.ElementAt(i), </text>
+                    }
+                    else
+                    {
+                        <text>@listaNum.ElementAt(i).</text>
+                    }
+
+                }
+            }
+        }
+    </div>
+    <hr />
+
+    @*Esercizio 5*@
+    <div>
+        @DateTime.Now.ToString("HH:MM:ss")
+    </div>
+    <hr />
+
+    @*Esercizio 6*@
+    <div>
+        @{
+            var date = DateTime.Now;
+            <p>@date.AddDays(-7)</p>
+            <p>@date.ToString("dddd")</p>
+            <p>@date.AddYears(+1).ToString("dddd")</p>
+        }
+    </div>
+    <hr />
 </div>
