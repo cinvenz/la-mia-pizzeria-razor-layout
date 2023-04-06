@@ -19,13 +19,8 @@
     
     int Conta(char c, string str)
     {
-        char[] characters = str.ToCharArray();
-        int sum = 0;
-        foreach (var character in characters)
-        {
-            if (character == c) sum++;
-        }
-        return sum;
+        return str.Count(_c => _c == c);
+     
     }
 
     ///////////////////////////
